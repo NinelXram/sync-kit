@@ -1,0 +1,7 @@
+{
+  "topology": "monorepo",
+  "ci": "none",
+  "agentFiles": ["CLAUDE.md"],
+  "channel": "none",
+  "lang": "vi"
+}

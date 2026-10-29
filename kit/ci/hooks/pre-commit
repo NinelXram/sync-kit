@@ -1,0 +1,2 @@
+#!/bin/sh
+node sync/scripts/sync.mjs check || exit 1

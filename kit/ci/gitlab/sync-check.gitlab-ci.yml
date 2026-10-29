@@ -1,0 +1,13 @@
+# Requires GitLab >= 13.7. Include from .gitlab-ci.yml:
+#   include:
+#     - local: sync/ci/sync-check.gitlab-ci.yml
+sync-check:
+  # SYNC_KIT_RUNNER_TAGS
+  image: node:22
+  variables:
+    GIT_DEPTH: "0"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - node sync/scripts/sync.mjs check
+    - node sync/scripts/sync.mjs contract-check --base "$CI_MERGE_REQUEST_DIFF_BASE_SHA" --head HEAD

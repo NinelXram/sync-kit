@@ -1,0 +1,7 @@
+{
+  "topology": "monorepo",
+  "ci": "github",
+  "agentFiles": ["AGENTS.md"],
+  "channel": "telegram",
+  "lang": "en"
+}

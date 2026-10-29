@@ -1,0 +1,7 @@
+{
+  "topology": "single",
+  "ci": "gitlab",
+  "agentFiles": ["AGENTS.md"],
+  "channel": "gchat",
+  "lang": "en"
+}

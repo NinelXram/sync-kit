@@ -1,0 +1,3 @@
+{
+  "new": ["--module", "billing", "--from", "be", "--to", "fe", "--type", "feature", "--slug", "invoice-due-date", "--title", "Invoice gets a due date", "--refs", "XYZ-BE-001", "--author", "@alice"]
+}

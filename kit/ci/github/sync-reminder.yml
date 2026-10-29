@@ -1,0 +1,22 @@
+name: sync-reminder
+on:
+  schedule:
+    # SYNC_KIT_CRON
+    - cron: '0 2 * * 1-5'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sync-remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Remind
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GCHAT_WEBHOOK_URL: ${{ secrets.GCHAT_WEBHOOK_URL }}
+        run: node sync/scripts/sync.mjs remind

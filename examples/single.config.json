@@ -1,0 +1,28 @@
+{
+  "kitVersion": "1.0.0",
+  "lang": "en",
+  "topology": "single",
+  "sides": {
+    "dev": "Development",
+    "qa": "QA"
+  },
+  "paused": [],
+  "modules": {},
+  "inbox": { "commit": true },
+  "contract": {
+    "globs": {
+      "dev": [
+        "app/api/**/*.py",
+        "app/schemas/**/*.py",
+        "alembic/versions/*.py"
+      ]
+    }
+  },
+  "strict": { "enabled": true, "since": "2026-10-29" },
+  "notify": {
+    "channel": "gchat",
+    "managers": {},
+    "remindMaxItems": 5,
+    "siteUrl": ""
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kitVersion": "1.0.0",
+  "lang": "en",
+  "topology": "monorepo",
+  "sides": {
+    "be": "Backend",
+    "fe": "Web",
+    "mobile": "Mobile",
+    "qa": "QA"
+  },
+  "paused": ["mobile"],
+  "modules": {
+    "billing": "billing",
+    "orders": "orders",
+    "accounts": "accounts"
+  },
+  "inbox": { "commit": true },
+  "contract": {
+    "globs": {
+      "be": [
+        "apps/api/openapi.yaml",
+        "apps/api/src/**/*.controller.ts",
+        "apps/api/src/**/*.dto.ts",
+        "apps/api/prisma/schema.prisma"
+      ],
+      "fe": [
+        "packages/ui/src/index.ts"
+      ]
+    }
+  },
+  "strict": { "enabled": true, "since": "2026-10-29" },
+  "notify": {
+    "channel": "telegram",
+    "managers": {
+      "be": ["@alice"],
+      "fe": ["@bob"],
+      "qa": ["@carol"]
+    },
+    "remindMaxItems": 5,
+    "siteUrl": ""
+  }
+}

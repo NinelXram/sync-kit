@@ -1,0 +1,3 @@
+{
+  "new": ["--module", "orders", "--from", "fe", "--to", "be", "--type", "question", "--slug", "order-filter-params", "--title", "Bộ lọc đơn hàng nhận tham số nào?", "--author", "@bob"]
+}

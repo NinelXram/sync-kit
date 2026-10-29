@@ -1,0 +1,23 @@
+# Requires GitLab >= 13.7. Include from .gitlab-ci.yml:
+#   include:
+#     - local: sync/ci/sync-notify.gitlab-ci.yml
+# Secrets (TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, GCHAT_WEBHOOK_URL) come from the project's CI/CD Variables.
+sync-notify:
+  # SYNC_KIT_RUNNER_TAGS
+  image: node:22
+  variables:
+    GIT_DEPTH: "0"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      changes:
+        - "sync/**/*"
+  script:
+    - node sync/scripts/sync.mjs notify --before "$CI_COMMIT_BEFORE_SHA" --after "$CI_COMMIT_SHA"
+
+sync-remind:
+  # SYNC_KIT_RUNNER_TAGS
+  image: node:22
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SYNC_REMIND == "1"
+  script:
+    - node sync/scripts/sync.mjs remind

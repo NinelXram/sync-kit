@@ -1,0 +1,3 @@
+{
+  "new": ["--from", "dev", "--to", "qa", "--type", "bugfix", "--slug", "order-total-rounding", "--title", "Order total is rounded to cents", "--refs", "XYZ-QA-002", "--author", "@bob"]
+}
