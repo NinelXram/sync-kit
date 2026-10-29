@@ -14,6 +14,19 @@ export const GIT_ENV = {
   GIT_COMMITTER_EMAIL: 'test@example.com',
 };
 
+// CI variables that change engine output (annotation format, note links, real sends).
+// Stripped so tests behave the same locally and on the kit's own CI runners.
+const CI_VARS = [
+  'GITHUB_ACTIONS', 'GITHUB_REPOSITORY', 'GITHUB_SERVER_URL', 'GITLAB_CI', 'CI_PROJECT_URL',
+  'TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID', 'GCHAT_WEBHOOK_URL',
+];
+
+export function cleanEnv(extra = {}) {
+  const env = { ...process.env, ...GIT_ENV };
+  for (const k of CI_VARS) delete env[k];
+  return { ...env, ...extra };
+}
+
 export function gitCommit(root, msg) {
   const env = { ...process.env, ...GIT_ENV };
   spawnSync('git', ['add', '-A'], { cwd: root, env });
@@ -22,7 +35,7 @@ export function gitCommit(root, msg) {
 
 export async function makeTempRepo(files = {}) {
   const root = await mkdtemp(path.join(tmpdir(), 'sync-kit-'));
-  const env = { ...process.env, ...GIT_ENV };
+  const env = cleanEnv();
   spawnSync('git', ['init', '-q'], { cwd: root, env });
   for (const [rel, content] of Object.entries(files)) {
     const abs = path.join(root, rel);
